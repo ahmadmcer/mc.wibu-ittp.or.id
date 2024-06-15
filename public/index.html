@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Metas -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Wibu ITTP Minecraft SMP" />
+    <meta name="author" content="Wibu ITTP" />
+    <meta name="keywords" content="Wibu ITTP, Minecraft, SMP, Server" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Title -->
+    <title>Wibu ITTP Minecraft SMP</title>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- FontAwesome 6.5.2 -->
+    <script defer src="../src/js/fontawesome-all.js"></script>
+  </head>
+  <body class="bg-black text-white">
+    <div id="particles-js" class="fixed inset-0 -z-10"></div>
+    <main class="flex min-h-svh flex-col items-center justify-between overflow-hidden bg-black/70">
+      <header class="flex flex-col items-end justify-center mt-16">
+        <div
+          class="font-header flex items-center justify-center gap-8 rounded-lg bg-fuchsia-700 px-16 py-8 font-bold shadow-lg">
+          <i class="fas fa-dragon text-6xl"></i>
+          <div class="text-center drop-shadow-lg">
+            <h1 class="text-4xl tracking-widest">Wibu ITTP Minecraft SMP</h1>
+            <p class="text-lg tracking-widest">Survival | XP Skills | Ranked Mobs | Coins</p>
+          </div>
+          <i class="fas fa-dragon fa-flip-horizontal text-6xl"></i>
+        </div>
+        <p class="mr-4 rounded-b-lg bg-indigo-700 px-8 py-2 text-center text-lg font-bold tracking-widest shadow-lg">
+          v1.20.6
+        </p>
+      </header>
+      <section class="mt-16 flex flex-row items-center justify-center gap-32">
+        <div id="map-container" class="relative h-80 w-96 overflow-hidden rounded-lg bg-black shadow-lg">
+          <h2 class="absolute bottom-0 left-0 right-0 z-10 rounded-b-lg bg-fuchsia-700 py-2 text-center">
+            Minecraft Map
+          </h2>
+          <div id="map-curtain" class="absolute inset-0 z-10 flex items-center justify-center rounded-lg">
+            <a
+              target="_blank"
+              href="http://mc.wibu-ittp.or.id:8080/"
+              class="flex h-full w-full items-center justify-center bg-black/50 text-lg tracking-widest text-white opacity-0 transition-opacity duration-300 hover:opacity-100">
+              Click to Open Map
+            </a>
+          </div>
+          <div id="map-frame" class="absolute -left-14 -right-14 bottom-0 top-0"></div>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <div class="relative">
+            <div class="absolute -top-5 left-0 right-0 flex items-center justify-center">
+              <p id="status-container" class="rounded-lg bg-red-700 px-4 py-2 text-center text-sm font-bold tracking-widest shadow">
+                <span id="status">offline</span> / <span id="players-open" class="cursor-pointer"><i class="fas fa-user"></i> <span id="players-count">0</span></span>
+              </p>
+            </div>
+            <p id="ip-server" class="rounded-lg bg-red-500 px-16 pb-4 pt-6 text-center text-xl tracking-widest">
+              mc.wibu-ittp.or.id
+              <button id="copy-ip" class="text-white hover:text-gray-500">
+                <i class="fas fa-copy"></i>
+              </button>
+            </p>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <button
+              id="join-open"
+              class="rounded-b-lg bg-indigo-700 px-8 py-2 text-sm font-bold tracking-widest shadow-lg hover:bg-indigo-900">
+              JOIN NOW!!!
+            </button>
+          </div>
+        </div>
+      </section>
+      <footer class="mb-8 mt-32">
+        <p class="text-center text-sm tracking-widest">
+          &copy; 2024 Wibu ITTP. All rights reserved. | Made with <i class="fas fa-heart text-red-500"></i> AhmadMCer
+        </p>
+      </footer>
+
+      <!-- Modal Join Step -->
+      <div id="modal-join" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/90">
+        <div class="relative rounded-lg bg-stone-500 p-8 shadow-lg">
+          <div class="flex flex-col items-center justify-center gap-8">
+            <h2 class="rounded-lg bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black shadow-lg">
+              HOW TO JOIN
+            </h2>
+            <ol class="ml-8 list-outside list-decimal text-xl">
+              <li>Open Minecraft</li>
+              <li>Click Multiplayer</li>
+              <li>Click Add Server</li>
+              <li>Fill in the Server Name with <span class="">Wibu ITTP</span></li>
+              <li>Fill in the Server Address with <span class="">mc.wibu-ittp.or.id</span></li>
+              <li>Click Done</li>
+              <li>Click the Server and Join</li>
+            </ol>
+          </div>
+          <button
+            class="absolute right-0 top-0 p-2 text-white hover:text-red-500"
+            onclick="this.parentElement.parentElement.classList.add('hidden')">
+            <i class="fas fa-times h-8 w-8"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Player Lists -->
+      <div id="modal-players" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/90">
+        <div class="relative rounded-lg bg-stone-500 p-8 shadow-lg">
+          <div class="flex flex-col items-center justify-center gap-8">
+            <h2 class="rounded-lg bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black shadow-lg">
+              PLAYERS LIST
+            </h2>
+            <ul id="players-list" class="grid grid-cols-2 gap-x-8 gap-y-4 text-xl"></ul>
+          </div>
+          <button
+            class="absolute right-0 top-0 p-2 text-white hover:text-red-500"
+            onclick="this.parentElement.parentElement.classList.add('hidden')">
+            <i class="fas fa-times h-8 w-8"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pop Up IP Copied -->
+      <div id="popup-ip" class="fixed inset-0 z-50 flex hidden items-center justify-center">
+        <div class="rounded-lg bg-black/90 px-8 py-4 text-lg font-bold tracking-widest text-white shadow-lg">
+          IP Copied!
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <!-- Anime JS -->
+  <script type="module">
+    import anime from '../src/js/anime.es.js';
+
+    for (let i = 0; i < 100; i++) {
+      const div = document.createElement('div');
+      div.classList.add('block', 'absolute', 'shadow-lg');
+
+      if (i % 2 === 0) {
+        div.classList.add('bg-violet-950');
+      } else {
+        div.classList.add('bg-indigo-950');
+      }
+
+      div.style.top = `${anime.random(-10, 110)}vh`;
+      div.style.left = `${anime.random(-10, 110)}vw`;
+      div.style.width = `${anime.random(128, 256)}px`;
+      div.style.height = `${anime.random(256, 512)}px`;
+
+      document.getElementById('particles-js').appendChild(div);
+    }
+
+    // Spawn blocks
+    anime({
+      targets: '.block',
+      translateX: () => anime.random(-100, 100),
+      translateY: () => anime.random(-100, 100),
+      scale: () => anime.random(0.5, 2),
+      direction: 'alternate',
+      duration: () => anime.random(10000, 20000),
+      easing: 'easeInOutSine',
+      loop: true,
+    });
+  </script>
+
+  <!-- Map -->
+  <script>
+    const map = document.getElementById('map-frame');
+    const mapIframe = document.createElement('iframe');
+
+    const worldList = ['minecraft_overworld', 'minecraft_the_nether', 'minecraft_the_end'];
+
+    function randomMap() {
+      const world = worldList[Math.floor(Math.random() * worldList.length)];
+      const xCor = Math.floor(Math.random() * 14336) - 7168;
+      const zCor = Math.floor(Math.random() * 14336) - 7168;
+
+      mapIframe.src = `http://mc.wibu-ittp.or.id:8080/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+      mapIframe.title = 'Wibu ITTP Minecraft SMP Map';
+      mapIframe.classList.add('h-full', 'w-full', 'bg-black', 'rounded-lg', 'shadow-lg');
+
+      map.appendChild(mapIframe);
+    }
+
+    randomMap();
+    setInterval(() => {
+      mapIframe.remove();
+      randomMap();
+    }, 5000);
+  </script>
+
+  <!-- Modal -->
+  <script>
+    const joinOpen = document.getElementById('join-open');
+    const modalJoin = document.getElementById('modal-join');
+    const playersOpen = document.getElementById('players-open');
+    const modalPlayers = document.getElementById('modal-players');
+    const copyIP = document.getElementById('copy-ip');
+
+    joinOpen.addEventListener('click', () => {
+      modalJoin.classList.remove('hidden');
+    });
+
+    playersOpen.addEventListener('click', () => {
+      modalPlayers.classList.remove('hidden');
+    });
+
+    copyIP.addEventListener('click', () => {
+      navigator.clipboard.writeText('mc.wibu-ittp.or.id');
+      document.getElementById('popup-ip').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('popup-ip').classList.add('hidden');
+      }, 1000);
+    });
+  </script>
+
+  <!-- Online Status -->
+  <script>
+    const status = document.getElementById('status');
+    const statusContainer = document.getElementById('status-container');
+    const ipServer = document.getElementById('ip-server');
+    const playersList = document.getElementById('players-list');
+    const playersCount = document.getElementById('players-count');
+
+    fetch('https://api.mcstatus.io/v2/status/java/mc.wibu-ittp.or.id')
+      .then((response) => response.json())
+      .then((data) => {
+        // Set Status Online
+        if (data.online) {
+          status.textContent = 'online';
+          statusContainer.classList.replace('bg-red-700', 'bg-green-700');
+          ipServer.classList.replace('bg-red-500', 'bg-green-500');
+        }
+
+        // Set Players List
+        const players = data.players.list;
+
+        playersList.innerHTML = '';
+        if (players.length === 0) {
+          playersList.innerHTML = '<li class="text-center text-xl">No Players Online</li>';
+        } else {
+          players.forEach((player) => {
+            const li = document.createElement('li');
+            li.classList.add('flex', 'items-center', 'justify-start', 'gap-4');
+            li.innerHTML = `
+            <img src="https://minotar.net/avatar/${player.name_raw}/32" alt="${player.name_raw}" class="rounded" />
+            <span>${player.name_raw}</span>
+          `;
+
+            playersList.appendChild(li);
+          });
+        }
+
+        playersCount.textContent = players.length;
+      });
+  </script>
+</html>

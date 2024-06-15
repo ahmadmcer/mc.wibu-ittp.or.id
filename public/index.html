@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- FontAwesome 6.5.2 -->
-    <script defer src="../src/js/fontawesome-all.js"></script>
+    <script defer src="/src/js/fontawesome-all.js"></script>
   </head>
   <body class="bg-black text-white">
     <div id="particles-js" class="fixed inset-0 -z-10"></div>
@@ -54,11 +54,11 @@
         <div class="flex flex-col items-center justify-center">
           <div class="relative">
             <div class="absolute -top-5 left-0 right-0 flex items-center justify-center">
-              <p id="status-container" class="rounded-lg bg-red-700 px-4 py-2 text-center text-sm font-bold tracking-widest shadow">
-                <span id="status">offline</span> / <span id="players-open" class="cursor-pointer"><i class="fas fa-user"></i> <span id="players-count">0</span></span>
+              <p id="status-container" class="rounded-lg bg-gray-700 px-4 py-2 text-center text-sm font-bold tracking-widest shadow">
+                <span id="status">connecting</span> / <span id="players-open" class="cursor-pointer"><i class="fas fa-user"></i> <span id="players-count">0</span></span>
               </p>
             </div>
-            <p id="ip-server" class="rounded-lg bg-red-500 px-16 pb-4 pt-6 text-center text-xl tracking-widest">
+            <p id="ip-server" class="rounded-lg bg-gray-500 px-16 pb-4 pt-6 text-center text-xl tracking-widest">
               mc.wibu-ittp.or.id
               <button id="copy-ip" class="text-white hover:text-gray-500">
                 <i class="fas fa-copy"></i>
@@ -133,7 +133,7 @@
 
   <!-- Anime JS -->
   <script type="module">
-    import anime from '../src/js/anime.es.js';
+    import anime from '/src/js/anime.es.js';
 
     for (let i = 0; i < 100; i++) {
       const div = document.createElement('div');
@@ -209,12 +209,59 @@
     });
 
     copyIP.addEventListener('click', () => {
-      navigator.clipboard.writeText('mc.wibu-ittp.or.id');
-      document.getElementById('popup-ip').classList.remove('hidden');
-      setTimeout(() => {
-        document.getElementById('popup-ip').classList.add('hidden');
-      }, 1000);
+      const textToCopy = 'mc.wibu-ittp.or.id';
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          showPopup();
+        }).catch(err => {
+          console.error('Failed to copy text using Clipboard API: ', err);
+          fallbackCopyTextToClipboard(textToCopy);
+        });
+      } else {
+        fallbackCopyTextToClipboard(textToCopy);
+      }
     });
+
+    function fallbackCopyTextToClipboard(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      // Avoid scrolling to bottom
+      textArea.style.position = 'fixed';
+      textArea.style.top = 0;
+      textArea.style.left = 0;
+      textArea.style.width = '2em';
+      textArea.style.height = '2em';
+      textArea.style.padding = 0;
+      textArea.style.border = 'none';
+      textArea.style.outline = 'none';
+      textArea.style.boxShadow = 'none';
+      textArea.style.background = 'transparent';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showPopup();
+        } else {
+          console.error('Fallback: Copying text command was unsuccessful');
+        }
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+
+      document.body.removeChild(textArea);
+    }
+
+    function showPopup() {
+      const popup = document.getElementById('popup-ip');
+      popup.classList.remove('hidden');
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 1000);
+    }
   </script>
 
   <!-- Online Status -->
@@ -231,8 +278,12 @@
         // Set Status Online
         if (data.online) {
           status.textContent = 'online';
-          statusContainer.classList.replace('bg-red-700', 'bg-green-700');
-          ipServer.classList.replace('bg-red-500', 'bg-green-500');
+          statusContainer.classList.replace('bg-gray-700', 'bg-green-700');
+          ipServer.classList.replace('bg-gray-500', 'bg-green-500');
+        } else {
+          status.textContent = 'offline';
+          statusContainer.classList.replace('bg-gray-700', 'bg-red-700');
+          ipServer.classList.replace('bg-gray-500', 'bg-red-500');
         }
 
         // Set Players List

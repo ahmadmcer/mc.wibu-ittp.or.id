@@ -10,6 +10,12 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#000000" />
 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     <!-- Title -->
     <title>Wibu ITTP Minecraft SMP</title>
 
@@ -44,12 +50,12 @@
           <div id="map-curtain" class="absolute inset-0 z-10 flex items-center justify-center rounded-lg">
             <a
               target="_blank"
-              href="http://mc.wibu-ittp.or.id:8080/"
+              href="https://mc.wibu-ittp.or.id/mcmap/"
               class="flex h-full w-full items-center justify-center bg-black/50 text-lg tracking-widest text-white opacity-0 transition-opacity duration-300 hover:opacity-100">
               Click to Open Map
             </a>
           </div>
-          <div id="map-frame" class="absolute -left-14 -right-14 bottom-0 top-0"></div>
+          <div id="map-frame" class="absolute -left-16 -right-16 -bottom-4 -top-4"></div>
         </div>
         <div class="flex flex-col items-center justify-center">
           <div class="relative">
@@ -178,7 +184,7 @@
       const xCor = Math.floor(Math.random() * 14336) - 7168;
       const zCor = Math.floor(Math.random() * 14336) - 7168;
 
-      mapIframe.src = `http://mc.wibu-ittp.or.id:8080/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+      mapIframe.src = `https://mc.wibu-ittp.or.id/mcmap/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
       mapIframe.title = 'Wibu ITTP Minecraft SMP Map';
       mapIframe.classList.add('h-full', 'w-full', 'bg-black', 'rounded-lg', 'shadow-lg');
 

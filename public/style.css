@@ -618,12 +618,20 @@ video {
   inset: 0px;
 }
 
-.-left-14{
-  left: -3.5rem;
+.-bottom-4{
+  bottom: -1rem;
 }
 
-.-right-14{
-  right: -3.5rem;
+.-left-16{
+  left: -4rem;
+}
+
+.-right-16{
+  right: -4rem;
+}
+
+.-top-4{
+  top: -1rem;
 }
 
 .-top-5{

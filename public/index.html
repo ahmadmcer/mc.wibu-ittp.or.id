@@ -33,7 +33,7 @@
           class="font-header flex items-center justify-center gap-8 rounded-lg bg-fuchsia-700 px-16 py-8 font-bold shadow-lg">
           <i class="fas fa-dragon text-6xl"></i>
           <div class="text-center drop-shadow-lg">
-            <h1 class="text-4xl tracking-widest">Wibu ITTP Minecraft SMP</h1>
+            <h1 class="text-4xl tracking-widest">Wibu ITTP Minecraft Server</h1>
             <p class="text-lg tracking-widest">Survival | XP Skills | Ranked Mobs | Coins</p>
           </div>
           <i class="fas fa-dragon fa-flip-horizontal text-6xl"></i>
@@ -50,7 +50,7 @@
           <div id="map-curtain" class="absolute inset-0 z-10 flex items-center justify-center rounded-lg">
             <a
               target="_blank"
-              href="https://mc.wibu-ittp.or.id/mcmap/"
+              href="https://mc.wibu-ittp.or.id/map/"
               class="flex h-full w-full items-center justify-center bg-black/50 text-lg tracking-widest text-white opacity-0 transition-opacity duration-300 hover:opacity-100">
               Click to Open Map
             </a>
@@ -177,25 +177,43 @@
     const map = document.getElementById('map-frame');
     const mapIframe = document.createElement('iframe');
 
-    const worldList = ['minecraft_overworld', 'minecraft_the_nether', 'minecraft_the_end'];
+    const worldList = ['minecraft_overworld', 'minecraft_the_nether', 'minecraft_the_end', 'nmr_astral_plane'];
+    const list = [];
+
+    function fetchPlayers() {
+      fetch('https://api.mcstatus.io/v2/status/java/mc.wibu-ittp.or.id')
+        .then((response) => response.json())
+        .then((data) => {
+          list.length = 0;
+          list.push(...data.players.list);
+        });
+    }
 
     function randomMap() {
       const world = worldList[Math.floor(Math.random() * worldList.length)];
-      const xCor = Math.floor(Math.random() * 14336) - 7168;
-      const zCor = Math.floor(Math.random() * 14336) - 7168;
+      const xCor = Math.floor(Math.random() * 1024) - 512;
+      const zCor = Math.floor(Math.random() * 1024) - 512;
+      // const xCor = Math.floor(Math.random() * 14336) - 7168;
+      // const zCor = Math.floor(Math.random() * 14336) - 7168;
 
-      mapIframe.src = `https://mc.wibu-ittp.or.id/mcmap/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+      if (list.length > 0) {
+        const player = list[Math.floor(Math.random() * list.length)];
+        mapIframe.src = `https://mc.wibu-ittp.or.id/map/?uuid=${player.uuid.replace(/-/g, '')}`;
+      } else {
+        mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+      }
       mapIframe.title = 'Wibu ITTP Minecraft SMP Map';
       mapIframe.classList.add('h-full', 'w-full', 'bg-black', 'rounded-lg', 'shadow-lg');
 
       map.appendChild(mapIframe);
     }
 
+    fetchPlayers();
     randomMap();
     setInterval(() => {
       mapIframe.remove();
       randomMap();
-    }, 5000);
+    }, 10000);
   </script>
 
   <!-- Modal -->

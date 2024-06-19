@@ -27,23 +27,24 @@
   </head>
   <body class="bg-black text-white">
     <div id="particles-js" class="fixed inset-0 -z-10"></div>
-    <main class="flex min-h-svh flex-col items-center justify-between overflow-hidden bg-black/70">
-      <header class="mt-16 flex flex-col items-end justify-center">
+    <main class="flex min-h-svh flex-col items-center justify-between overflow-hidden bg-black/70 px-4">
+      <header class="mt-8 flex flex-col items-end justify-center md:mt-16">
         <div
-          class="flex items-center justify-center gap-8 rounded-lg bg-fuchsia-700 px-16 py-8 font-header font-bold shadow-lg">
-          <i class="fas fa-dragon text-6xl"></i>
+          class="flex items-center justify-center gap-4 rounded-lg bg-fuchsia-700 px-8 py-2 font-header font-bold shadow-lg md:gap-8 md:px-16 md:py-8">
+          <i class="fas fa-dragon hidden md:inline md:text-6xl"></i>
           <div class="text-center drop-shadow-lg">
-            <h1 class="text-4xl tracking-widest">Wibu ITTP Minecraft Server</h1>
-            <p class="text-lg tracking-widest">Survival | XP Skills | Ranked Mobs | Coins</p>
+            <h1 class="tracking-widest md:text-4xl">Wibu ITTP Minecraft Server</h1>
+            <p class="text-xs md:text-lg md:tracking-widest">Survival | XP Skills | Ranked Mobs | Coins</p>
           </div>
-          <i class="fas fa-dragon fa-flip-horizontal text-6xl"></i>
+          <i class="fas fa-dragon fa-flip-horizontal hidden md:inline md:text-6xl"></i>
         </div>
-        <p class="mr-4 rounded-b-lg bg-indigo-700 px-8 py-2 text-center text-lg font-bold tracking-widest shadow-lg">
+        <p
+          class="mr-4 rounded-b-lg bg-indigo-700 px-4 py-1 text-center font-bold tracking-widest shadow-lg md:px-8 md:py-2 md:text-lg">
           v1.20.6
         </p>
       </header>
-      <section class="mt-16 flex flex-row items-center justify-center gap-32">
-        <div id="map-container" class="relative h-80 w-96 overflow-hidden rounded-lg bg-black shadow-lg">
+      <section class="mt-16 flex flex-col-reverse items-center justify-center gap-8 md:flex-row md:gap-32">
+        <div id="map-container" class="relative h-80 w-80 overflow-hidden rounded-lg bg-black px-2 shadow-lg md:w-96">
           <h2 class="absolute bottom-0 left-0 right-0 z-10 rounded-b-lg bg-fuchsia-700 py-2 text-center">
             Minecraft Map
           </h2>
@@ -62,16 +63,18 @@
             <div class="absolute -top-5 left-0 right-0 flex items-center justify-center">
               <p
                 id="status-container"
-                class="rounded-lg bg-gray-700 px-4 py-2 text-center text-sm font-bold tracking-widest shadow">
+                class="rounded-lg bg-gray-700 px-2 py-1 text-center text-xs font-bold tracking-widest shadow md:px-4 md:py-2 md:text-sm">
                 <span id="status">connecting</span> /
                 <span id="players-open" class="cursor-pointer"
                   ><i class="fas fa-user"></i> <span id="players-count">0</span></span
                 >
               </p>
             </div>
-            <p id="ip-server" class="rounded-lg bg-gray-500 px-16 pb-4 pt-6 text-center text-xl tracking-widest">
+            <p
+              id="ip-server"
+              class="rounded-lg bg-gray-500 px-8 pb-2 pt-3 text-center tracking-widest md:px-16 md:pb-4 md:pt-6 md:text-xl">
               mc.wibu-ittp.or.id
-              <button id="copy-ip" class="text-white hover:text-gray-500">
+              <button id="copy-ip" class="text-white hover:text-black">
                 <i class="fas fa-copy"></i>
               </button>
             </p>
@@ -79,7 +82,7 @@
           <div class="flex flex-col items-center justify-center">
             <button
               id="join-open"
-              class="rounded-b-lg bg-indigo-700 px-8 py-2 text-sm font-bold tracking-widest shadow-lg hover:bg-indigo-900">
+              class="rounded-b-lg bg-indigo-700 px-4 py-1 text-xs font-bold tracking-widest shadow-lg hover:bg-indigo-900 md:px-8 md:py-2 md:text-sm">
               JOIN NOW!!!
             </button>
           </div>
@@ -87,7 +90,8 @@
       </section>
       <footer class="mb-8 mt-32">
         <p class="text-center text-sm tracking-widest">
-          &copy; 2024 Wibu ITTP. All rights reserved. | Made with <i class="fas fa-heart text-red-500"></i> AhmadMCer
+          &copy; 2024 Wibu ITTP. All rights reserved.<span class="hidden md:inline"> | </span><br class="md:hidden" />Made with
+          <i class="fas fa-heart text-red-500"></i> AhmadMCer
         </p>
       </footer>
 
@@ -182,7 +186,8 @@
     const map = document.getElementById('map-frame');
     const mapIframe = document.createElement('iframe');
 
-    const worldList = ['minecraft_overworld', 'minecraft_the_nether', 'minecraft_the_end', 'nmr_astral_plane'];
+    // const worldList = ['minecraft_overworld', 'minecraft_the_nether', 'minecraft_the_end', 'nmr_astral_plane'];
+    const worldList = ['minecraft_overworld'];
     const list = [];
 
     function fetchPlayers() {
@@ -196,14 +201,18 @@
 
     function randomMap() {
       const world = worldList[Math.floor(Math.random() * worldList.length)];
-      const xCor = Math.floor(Math.random() * 1024) - 512;
-      const zCor = Math.floor(Math.random() * 1024) - 512;
-      // const xCor = Math.floor(Math.random() * 14336) - 7168;
-      // const zCor = Math.floor(Math.random() * 14336) - 7168;
+      // const xCor = Math.floor(Math.random() * 1024) - 512;
+      // const zCor = Math.floor(Math.random() * 1024) - 512;
+      const xCor = Math.floor(Math.random() * 14336) - 7168;
+      const zCor = Math.floor(Math.random() * 14336) - 7168;
 
       if (list.length > 0) {
-        const player = list[Math.floor(Math.random() * list.length)];
-        mapIframe.src = `https://mc.wibu-ittp.or.id/map/?uuid=${player.uuid.replace(/-/g, '')}`;
+        if (Math.random() < 0.5) {
+          const player = list[Math.floor(Math.random() * list.length)];
+          mapIframe.src = `https://mc.wibu-ittp.or.id/map/?uuid=${player.uuid.replace(/-/g, '')}`;
+        } else {
+          mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+        }
       } else {
         mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
       }

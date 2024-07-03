@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         header: ['"Aleo"', ...defaultTheme.fontFamily.sans],
-        sans: ['"Ubuntu Mono"', ...defaultTheme.fontFamily.mono],
+        sans: ['"Minecraft"', ...defaultTheme.fontFamily.sans],
       },
     },
   },

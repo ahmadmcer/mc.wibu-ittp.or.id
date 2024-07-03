@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@font-face {
+  font-family: 'Minecraft'; /* Choose a unique name for your font */
+  src: url('/src/font/Minecraft-Seven_v2.ttf') format('truetype'); /* Specify the path to your font file */
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* *, *::before, *::after {
-  outline: 1px solid red;
-} */

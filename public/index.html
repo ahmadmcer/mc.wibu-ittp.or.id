@@ -11,10 +11,10 @@
     <meta name="theme-color" content="#000000" />
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
 
     <!-- Title -->
     <title>Wibu ITTP Minecraft SMP</title>
@@ -26,29 +26,61 @@
     <script defer src="/src/js/fontawesome-all.js"></script>
   </head>
   <body class="bg-black text-white">
-    <div id="particles-js" class="fixed inset-0 -z-10"></div>
+    <!-- <div id="particles-js" class="fixed inset-0 -z-10"></div> -->
+    <section id="background">
+      <img
+        src="img/bg-img-1.png"
+        class="fixed inset-0 -z-10 h-full w-full object-cover transition-opacity duration-1000"
+        alt="Background" />
+      <img
+        src="img/bg-img-2.png"
+        class="fixed inset-0 -z-10 h-full w-full object-cover transition-opacity duration-1000"
+        alt="Background" />
+      <img
+        src="img/bg-img-3.png"
+        class="fixed inset-0 -z-10 h-full w-full object-cover transition-opacity duration-1000"
+        alt="Background" />
+      <img
+        src="img/bg-img-4.png"
+        class="fixed inset-0 -z-10 h-full w-full object-cover transition-opacity duration-1000"
+        alt="Background" />
+    </section>
+
+    <script>
+      const background = document.getElementById('background');
+      const images = background.querySelectorAll('img');
+      let index = 0;
+
+      setInterval(() => {
+        images[index].classList.add('opacity-0');
+        index = (index + 1) % images.length;
+        images[index].classList.remove('opacity-0');
+      }, 5000);
+    </script>
     <main class="flex min-h-svh flex-col items-center justify-between overflow-hidden bg-black/70 px-4">
-      <header class="mt-8 flex flex-col items-end justify-center md:mt-16">
+      <!-- <header class="mt-8 flex flex-col items-end justify-center md:mt-16">
         <div
-          class="flex items-center justify-center gap-4 rounded-lg bg-fuchsia-700 px-8 py-2 font-header font-bold shadow-lg md:gap-8 md:px-16 md:py-8">
+          class="flex items-center justify-center gap-4 bg-fuchsia-700 px-8 py-2 font-header font-bold md:gap-8 md:px-16 md:py-8">
           <i class="fas fa-dragon hidden md:inline md:text-6xl"></i>
-          <div class="text-center drop-shadow-lg">
+          <div class="text-center drop">
             <h1 class="tracking-widest md:text-4xl">Wibu ITTP Minecraft Server</h1>
             <p class="text-xs md:text-lg md:tracking-widest">Survival | XP Skills | Ranked Mobs | Coins</p>
           </div>
           <i class="fas fa-dragon fa-flip-horizontal hidden md:inline md:text-6xl"></i>
         </div>
         <p
-          class="mr-4 rounded-b-lg bg-indigo-700 px-4 py-1 text-center font-bold tracking-widest shadow-lg md:px-8 md:py-2 md:text-lg">
+          class="mr-4 bg-indigo-700 px-4 py-1 text-center font-bold tracking-widest md:px-8 md:py-2 md:text-lg">
           v1.20.6
         </p>
+      </header> -->
+      <header class="mt-8 flex flex-col items-center justify-center md:mt-16 drop-shadow-lg">
+        <img src="img/logo.png" alt="Logo" class="h-24 w-auto md:h-32" />
       </header>
-      <section class="mt-16 flex flex-col-reverse items-center justify-center gap-8 md:flex-row md:gap-32">
-        <div id="map-container" class="relative h-80 w-80 overflow-hidden rounded-lg bg-black px-2 shadow-lg md:w-96">
-          <h2 class="absolute bottom-0 left-0 right-0 z-10 rounded-b-lg bg-fuchsia-700 py-2 text-center">
-            Minecraft Map
-          </h2>
-          <div id="map-curtain" class="absolute inset-0 z-10 flex items-center justify-center rounded-lg">
+      <section
+        class="flex flex-col-reverse items-center justify-center gap-8 bg-black/50 p-8 md:flex-row md:gap-32 md:p-16">
+        <div id="map-container" class="relative h-80 w-80 overflow-hidden bg-black px-2 md:w-96">
+          <h2 class="absolute bottom-0 left-0 right-0 z-10 bg-stone-700 py-2 text-center">Minecraft Map</h2>
+          <div id="map-curtain" class="absolute inset-0 z-10 flex items-center justify-center">
             <a
               target="_blank"
               href="https://mc.wibu-ittp.or.id/map/"
@@ -63,7 +95,7 @@
             <div class="absolute -top-5 left-0 right-0 flex items-center justify-center">
               <p
                 id="status-container"
-                class="rounded-lg bg-gray-700 px-2 py-1 text-center text-xs font-bold tracking-widest shadow md:px-4 md:py-2 md:text-sm">
+                class="bg-gray-700 px-2 py-1 text-center text-xs font-bold tracking-widest shadow md:px-4 md:py-2 md:text-sm">
                 <span id="status">connecting</span> /
                 <span id="players-open" class="cursor-pointer"
                   ><i class="fas fa-user"></i> <span id="players-count">0</span></span
@@ -72,7 +104,7 @@
             </div>
             <p
               id="ip-server"
-              class="rounded-lg bg-gray-500 px-8 pb-2 pt-3 text-center tracking-widest md:px-16 md:pb-4 md:pt-6 md:text-xl">
+              class="bg-gray-500 px-8 pb-2 pt-3 text-center tracking-widest md:px-16 md:pb-4 md:pt-6 md:text-xl">
               mc.wibu-ittp.or.id
               <button id="copy-ip" class="text-white hover:text-black">
                 <i class="fas fa-copy"></i>
@@ -82,26 +114,31 @@
           <div class="flex flex-col items-center justify-center">
             <button
               id="join-open"
-              class="rounded-b-lg bg-indigo-700 px-4 py-1 text-xs font-bold tracking-widest shadow-lg hover:bg-indigo-900 md:px-8 md:py-2 md:text-sm">
+              class="bg-indigo-700 px-4 py-1 text-xs font-bold tracking-widest hover:bg-indigo-900 md:px-8 md:py-2 md:text-sm">
               JOIN NOW!!!
             </button>
           </div>
+          <div class="mt-8 flex flex-col items-center justify-center gap-2">
+            <p class="text-center text-xs tracking-widest md:text-sm">SUPPORT:</p>
+            <div class="flex items-center justify-center gap-4">
+              <p class="bg-red-600 px-4 py-1 font-bold tracking-widest">Java +1.20.6</p>
+              <p class="bg-emerald-600 px-4 py-1 font-bold tracking-widest">Bedrock</p>
+            </div>
+          </div>
         </div>
       </section>
-      <footer class="mb-8 mt-32">
+      <footer class="mb-4 mt-16">
         <p class="text-center text-sm tracking-widest">
-          &copy; 2024 Wibu ITTP. All rights reserved.<span class="hidden md:inline"> | </span><br class="md:hidden" />Made with
-          <i class="fas fa-heart text-red-500"></i> AhmadMCer
+          &copy; 2024 Wibu ITTP. All rights reserved.<span class="hidden md:inline"> | </span
+          ><br class="md:hidden" />Made with <i class="fas fa-heart text-red-500"></i> AhmadMCer
         </p>
       </footer>
 
       <!-- Modal Join Step -->
       <div id="modal-join" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/90">
-        <div class="relative rounded-lg bg-stone-500 p-8 shadow-lg">
+        <div class="relative bg-stone-500 p-8">
           <div class="flex flex-col items-center justify-center gap-8">
-            <h2 class="rounded-lg bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black shadow-lg">
-              HOW TO JOIN
-            </h2>
+            <h2 class="bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black">HOW TO JOIN</h2>
             <ol class="ml-8 list-outside list-decimal text-xl">
               <li>Open Minecraft</li>
               <li>Click Multiplayer</li>
@@ -122,11 +159,9 @@
 
       <!-- Modal Player Lists -->
       <div id="modal-players" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/90">
-        <div class="relative rounded-lg bg-stone-500 p-8 shadow-lg">
+        <div class="relative bg-stone-500 p-8">
           <div class="flex flex-col items-center justify-center gap-8">
-            <h2 class="rounded-lg bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black shadow-lg">
-              PLAYERS LIST
-            </h2>
+            <h2 class="bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black">PLAYERS LIST</h2>
             <ul id="players-list" class="grid grid-cols-2 gap-x-8 gap-y-4 text-xl"></ul>
           </div>
           <button
@@ -139,20 +174,18 @@
 
       <!-- Pop Up IP Copied -->
       <div id="popup-ip" class="fixed inset-0 z-50 flex hidden items-center justify-center">
-        <div class="rounded-lg bg-black/90 px-8 py-4 text-lg font-bold tracking-widest text-white shadow-lg">
-          IP Copied!
-        </div>
+        <div class="bg-black/90 px-8 py-4 text-lg font-bold tracking-widest text-white">IP Copied!</div>
       </div>
     </main>
   </body>
 
   <!-- Anime JS -->
-  <script type="module">
+  <!-- <script type="module">
     import anime from '/src/js/anime.es.js';
 
     for (let i = 0; i < 100; i++) {
       const div = document.createElement('div');
-      div.classList.add('block', 'absolute', 'shadow-lg');
+      div.classList.add('block', 'absolute', ');
 
       if (i % 2 === 0) {
         div.classList.add('bg-violet-950');
@@ -179,7 +212,7 @@
       easing: 'easeInOutSine',
       loop: true,
     });
-  </script>
+  </script> -->
 
   <!-- Map -->
   <script>
@@ -201,23 +234,21 @@
 
     function randomMap() {
       const world = worldList[Math.floor(Math.random() * worldList.length)];
-      // const xCor = Math.floor(Math.random() * 1024) - 512;
-      // const zCor = Math.floor(Math.random() * 1024) - 512;
-      const xCor = Math.floor(Math.random() * 14336) - 7168;
-      const zCor = Math.floor(Math.random() * 14336) - 7168;
+      const xCor = Math.floor(Math.random() * 28672) - 14336;
+      const zCor = Math.floor(Math.random() * 28672) - 14336;
 
       if (list.length > 0) {
         if (Math.random() < 0.5) {
           const player = list[Math.floor(Math.random() * list.length)];
           mapIframe.src = `https://mc.wibu-ittp.or.id/map/?uuid=${player.uuid.replace(/-/g, '')}`;
         } else {
-          mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+          mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=0&x=${xCor}&z=${zCor}`;
         }
       } else {
-        mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=2&x=${xCor}&z=${zCor}`;
+        mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=0&x=${xCor}&z=${zCor}`;
       }
       mapIframe.title = 'Wibu ITTP Minecraft SMP Map';
-      mapIframe.classList.add('h-full', 'w-full', 'bg-black', 'rounded-lg', 'shadow-lg');
+      mapIframe.classList.add('h-full', 'w-full', 'bg-black');
 
       map.appendChild(mapIframe);
     }

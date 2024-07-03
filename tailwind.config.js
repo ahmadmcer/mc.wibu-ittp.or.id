@@ -6,7 +6,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        header: ['"Aleo"', ...defaultTheme.fontFamily.sans],
         sans: ['"Minecraft"', ...defaultTheme.fontFamily.sans],
       },
     },

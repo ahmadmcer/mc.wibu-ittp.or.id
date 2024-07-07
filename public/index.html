@@ -73,11 +73,11 @@
           v1.20.6
         </p>
       </header> -->
-      <header class="mt-8 flex flex-col items-center justify-center drop-shadow-lg md:mt-16">
-        <img src="img/logo.png" alt="Logo" class="h-24 w-auto md:h-32" />
+      <header class="mt-8 flex flex-col items-center justify-center md:mt-16">
+        <img src="img/logo.png" alt="Logo" class="h-24 w-auto md:h-32 drop-shadow" />
       </header>
       <section
-        class="flex flex-col-reverse items-center justify-center gap-4 p-8 md:flex-row md:gap-32 md:bg-black/50 md:p-16">
+        class="mt-10 flex flex-col-reverse items-center justify-center gap-4 md:mt-0 md:flex-row md:gap-32 md:bg-black/50 md:p-16">
         <div id="map-container" class="relative h-80 w-80 overflow-hidden bg-black px-2 md:w-96">
           <h2 class="absolute bottom-0 left-0 right-0 z-10 bg-stone-700 py-2 text-center">Minecraft Map</h2>
           <div id="map-curtain" class="absolute inset-0 z-10 flex items-center justify-center">
@@ -92,7 +92,7 @@
         </div>
         <div class="flex flex-col items-center justify-center">
           <div class="relative">
-            <div class="absolute -top-5 left-0 right-0 flex items-center justify-center">
+            <div class="absolute -top-3 md:-top-5 left-0 right-0 flex items-center justify-center">
               <p
                 id="status-container"
                 class="bg-gray-700 px-2 py-1 text-center text-xs font-bold tracking-widest shadow md:px-4 md:py-2 md:text-sm">
@@ -369,7 +369,7 @@
 
         playersList.innerHTML = '';
         if (players.length === 0) {
-          playersList.innerHTML = '<li class="text-center text-xl">No Players Online</li>';
+          playersList.innerHTML = '<li class="text-center text-xl col-span-2">No Players Online</li>';
         } else {
           players.forEach((player) => {
             const li = document.createElement('li');

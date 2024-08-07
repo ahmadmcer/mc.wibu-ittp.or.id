@@ -17,7 +17,7 @@
     <meta name="title" content="Wibu ITTP Minecraft SMP" />
     <meta
       name="description"
-      content="Minecraft Survival Multiplayer (SMP) server with addons like mob levels, skill abilities, coins, and much more. Support Java 1.20.6+ and Bedrock Edition." />
+      content="A classic Minecraft Survival Multiplayer (SMP) server with an added experience you can't get in the vanilla version. Only playable on Java and the latest Bedrock Edition (Minecraft 1.21)." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -25,7 +25,7 @@
     <meta property="og:title" content="Wibu ITTP Minecraft SMP" />
     <meta
       property="og:description"
-      content="Minecraft Survival Multiplayer (SMP) server with addons like mob levels, skill abilities, coins, and much more. Support Java 1.20.6+ and Bedrock Edition." />
+      content="A classic Minecraft Survival Multiplayer (SMP) server with an added experience you can't get in the vanilla version. Only playable on Java and the latest Bedrock Edition (Minecraft 1.21)." />
     <meta property="og:image" content="https://mc.wibu-ittp.or.id/meta-tags.png" />
 
     <!-- Twitter -->
@@ -34,7 +34,7 @@
     <meta property="twitter:title" content="Wibu ITTP Minecraft SMP" />
     <meta
       property="twitter:description"
-      content="Minecraft Survival Multiplayer (SMP) server with addons like mob levels, skill abilities, coins, and much more. Support Java 1.20.6+ and Bedrock Edition." />
+      content="A classic Minecraft Survival Multiplayer (SMP) server with an added experience you can't get in the vanilla version. Only playable on Java and the latest Bedrock Edition (Minecraft 1.21)." />
     <meta property="twitter:image" content="https://mc.wibu-ittp.or.id/meta-tags.png" />
 
     <!-- Favicon -->
@@ -143,9 +143,9 @@
             </button>
           </div>
           <div class="mt-4 flex flex-col items-center justify-center gap-2 md:mt-8">
-            <p class="text-center text-xs tracking-widest md:text-sm">SUPPORT:</p>
+            <p class="text-center text-xs tracking-widest md:text-sm">ONLY SUPPORT:</p>
             <div class="flex items-center justify-center gap-4">
-              <p class="bg-red-600 px-4 py-1 font-bold tracking-widest">Java +1.20.6</p>
+              <p class="bg-red-600 px-4 py-1 font-bold tracking-widest">Java 1.21</p>
               <p class="bg-emerald-600 px-4 py-1 font-bold tracking-widest">Bedrock</p>
             </div>
           </div>
@@ -258,8 +258,8 @@
 
     function randomMap() {
       const world = worldList[Math.floor(Math.random() * worldList.length)];
-      const xCor = Math.floor(Math.random() * 28672) - 14336;
-      const zCor = Math.floor(Math.random() * 28672) - 14336;
+      const xCor = Math.floor(Math.random() * 20480) - 10240;
+      const zCor = Math.floor(Math.random() * 20480) - 10240;
 
       if (list.length > 0) {
         if (Math.random() < 0.5) {

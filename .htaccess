@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Allow access to assets in src folder
+RewriteCond %{REQUEST_URI} ^/src/
+RewriteRule ^ - [L]
+
+# Allow access to linux-dash folder
+RewriteCond %{REQUEST_URI} ^/linux-dash/
+RewriteRule ^ - [L]
+
+# Allow access to map folder
+RewriteCond %{REQUEST_URI} ^/map/
+RewriteRule ^ - [L]
+
+# Redirect all other requests to public folder
+RewriteCond %{REQUEST_URI} !^/public/ [NC]
+RewriteRule ^(.*)$ /public/$1 [L]

@@ -112,7 +112,8 @@
               Click to Open Map
             </a>
           </div>
-          <div id="map-frame" class="absolute -bottom-4 -left-16 -right-16 -top-4"></div>
+          <div id="map-frame" class="absolute -top-8 -right-16 -bottom-8 -left-16"></div>
+          <!-- <div id="map-frame" class="absolute -bottom-4 -left-16 -right-16 -top-4"></div> -->
         </div>
         <div class="flex flex-col items-center justify-center">
           <div class="relative">
@@ -183,7 +184,7 @@
 
       <!-- Modal Player Lists -->
       <div id="modal-players" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/90">
-        <div class="relative bg-stone-500 p-8">
+        <div class="relative bg-stone-500 px-16 py-8">
           <div class="flex flex-col items-center justify-center gap-8">
             <h2 class="bg-white px-8 py-2 text-2xl font-bold tracking-widest text-black">PLAYERS LIST</h2>
             <ul id="players-list" class="grid grid-cols-2 gap-x-8 gap-y-4 text-xl"></ul>
@@ -243,8 +244,7 @@
     const map = document.getElementById('map-frame');
     const mapIframe = document.createElement('iframe');
 
-    // const worldList = ['minecraft_overworld', 'minecraft_the_nether', 'minecraft_the_end', 'nmr_astral_plane'];
-    const worldList = ['minecraft_overworld'];
+    const worldList = ['world', 'world_nether', 'world_the_end'];
     const list = [];
 
     function fetchPlayers() {
@@ -261,16 +261,18 @@
       const xCor = Math.floor(Math.random() * 20480) - 10240;
       const zCor = Math.floor(Math.random() * 20480) - 10240;
 
-      if (list.length > 0) {
-        if (Math.random() < 0.5) {
-          const player = list[Math.floor(Math.random() * list.length)];
-          mapIframe.src = `https://mc.wibu-ittp.or.id/map/?uuid=${player.uuid.replace(/-/g, '')}`;
-        } else {
-          mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=0&x=${xCor}&z=${zCor}`;
-        }
-      } else {
-        mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=0&x=${xCor}&z=${zCor}`;
-      }
+      // if (list.length > 0) {
+      //   if (Math.random() < 0.5) {
+      //     const player = list[Math.floor(Math.random() * list.length)];
+      //     mapIframe.src = `https://mc.wibu-ittp.or.id/map/?uuid=${player.uuid.replace(/-/g, '')}`;
+      //   } else {
+      //     mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&renderer=vintage_story&zoom=0&x=${xCor}&z=${zCor}`;
+      //     // mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&zoom=0&x=${xCor}&z=${zCor}`;
+      //   }
+      // } else {
+      //   mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&renderer=vintage_story&zoom=0&x=${xCor}&z=${zCor}`;
+      // }
+      mapIframe.src = `https://mc.wibu-ittp.or.id/map/?world=${world}&renderer=vintage_story&zoom=0&x=${xCor}&z=${zCor}`;
       mapIframe.title = 'Wibu ITTP Minecraft SMP Map';
       mapIframe.classList.add('h-full', 'w-full', 'bg-black');
 
@@ -399,7 +401,7 @@
             const li = document.createElement('li');
             li.classList.add('flex', 'items-center', 'justify-start', 'gap-4');
             li.innerHTML = `
-            <img src="https://minotar.net/avatar/${player.name_raw}/32" alt="${player.name_raw}" class="rounded" />
+            <img src="https://minotar.net/avatar/${player.name_raw}/32" alt="${player.name_raw}" />
             <span>${player.name_raw}</span>
           `;
 
